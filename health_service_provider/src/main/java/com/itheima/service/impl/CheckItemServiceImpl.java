@@ -3,6 +3,7 @@ package com.itheima.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.itheima.customExceptions.CustomException;
 import com.itheima.dao.CheckItemDao;
 import com.itheima.entity.PageResult;
 import com.itheima.entity.QueryPageBean;
@@ -33,5 +34,21 @@ public class CheckItemServiceImpl implements CheckItemService  {
         //获取查询结果
         Page<CheckItem> checkItemPage = checkItemDao.findByCondition(queryPageBean.getQueryString());
         return new PageResult(checkItemPage.getTotal(),checkItemPage);
+    }
+
+    @Override
+    public void delById(Integer id) {
+        checkItemDao.delIdForCheckGroup(id);
+        checkItemDao.delIdForCheckItem(id);
+    }
+
+    @Override
+    public CheckItem findById(Integer id) {
+        return checkItemDao.findById(id);
+    }
+
+    @Override
+    public void edit(CheckItem checkitem) {
+        checkItemDao.edit(checkitem);
     }
 }

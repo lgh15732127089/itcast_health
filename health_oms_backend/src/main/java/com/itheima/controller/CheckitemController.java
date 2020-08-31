@@ -9,9 +9,7 @@ import com.itheima.entity.Result;
 import com.itheima.pojo.CheckItem;
 import com.itheima.service.CheckItemService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author : 光辉的mac
@@ -34,7 +32,29 @@ public class CheckitemController {
 
     @RequestMapping("/findPage")
     public Result findPage(@RequestBody QueryPageBean queryPageBean){
+        log.debug("查询检查项的条件为 "+queryPageBean);
         PageResult pageResult = checkItemService.findPage(queryPageBean);
         return new Result(true,MessageConstant.QUERY_CHECKITEM_SUCCESS,pageResult);
+    }
+
+    @RequestMapping("/delById")
+    public Result delById(@RequestParam("id") Integer id){
+        log.debug("要删除的检查项id为 "+id);
+        checkItemService.delById(id);
+        return new Result(true,MessageConstant.DELETE_CHECKITEM_SUCCESS);
+    }
+
+    @RequestMapping("/findById")
+    public Result findById(@RequestParam("id") Integer id){
+        log.debug("要查找的检查项id为 "+id);
+        CheckItem checkItem = checkItemService.findById(id);
+        return new Result(true,MessageConstant.QUERY_CHECKITEM_SUCCESS,checkItem);
+    }
+
+    @RequestMapping("/edit")
+    public Result edit(@RequestBody CheckItem checkitem){
+        log.debug("要修改的检查组为 "+checkitem);
+        checkItemService.edit(checkitem);
+        return new Result(true,MessageConstant.QUERY_CHECKITEM_SUCCESS);
     }
 }
