@@ -11,6 +11,8 @@ import com.itheima.service.CheckItemService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author : 光辉的mac
  * @ClassName CheckitemController
@@ -56,5 +58,13 @@ public class CheckitemController {
         log.debug("要修改的检查组为 "+checkitem);
         checkItemService.edit(checkitem);
         return new Result(true,MessageConstant.QUERY_CHECKITEM_SUCCESS);
+    }
+
+
+    @RequestMapping("/selectAllCheckItem")
+    public Result selectAllCheckItem(){
+        List<CheckItem> checkItems = checkItemService.selectAllCheckItem();
+        log.debug("所有的检查组为 "+checkItems);
+        return new Result(true,MessageConstant.QUERY_CHECKITEM_SUCCESS,checkItems);
     }
 }

@@ -4,6 +4,8 @@ import com.github.pagehelper.Page;
 import com.itheima.pojo.CheckItem;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 /**
  * @author : 光辉的mac
  * @ClassName CheckItemDao
@@ -29,4 +31,7 @@ public interface CheckItemDao {
 
     @Update("UPDATE t_checkitem set name = #{name},sex = #{sex},code = #{code},age = #{age},price = #{price},type = #{type},attention = #{attention},remark = #{remark} where id = #{id}")
     void edit(CheckItem checkitem);
+
+    @Select("select * from t_checkitem")
+    List<CheckItem> selectAllCheckItem();
 }

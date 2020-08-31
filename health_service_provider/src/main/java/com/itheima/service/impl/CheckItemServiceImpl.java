@@ -11,6 +11,8 @@ import com.itheima.pojo.CheckItem;
 import com.itheima.service.CheckItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 /**
  * @author : 光辉的mac
  * @ClassName CheckItemServiceImpl
@@ -50,5 +52,10 @@ public class CheckItemServiceImpl implements CheckItemService  {
     @Override
     public void edit(CheckItem checkitem) {
         checkItemDao.edit(checkitem);
+    }
+
+    @Override
+    public List<CheckItem> selectAllCheckItem() {
+        return checkItemDao.selectAllCheckItem();
     }
 }

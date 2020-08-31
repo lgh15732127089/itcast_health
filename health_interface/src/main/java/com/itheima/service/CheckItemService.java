@@ -4,6 +4,8 @@ import com.itheima.entity.PageResult;
 import com.itheima.entity.QueryPageBean;
 import com.itheima.pojo.CheckItem;
 
+import java.util.List;
+
 /**
  * @author : 光辉的mac
  * @ClassName CheckItemService
@@ -19,4 +21,7 @@ public interface CheckItemService {
     CheckItem findById(Integer id);
 
     void edit(CheckItem checkitem);
+
+    List<CheckItem> selectAllCheckItem();
+
 }
