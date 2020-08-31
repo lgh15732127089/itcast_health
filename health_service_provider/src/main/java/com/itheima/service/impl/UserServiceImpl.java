@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UserServiceImpl implements UserService {
     @Override
     public Boolean login(String username, String password) {
-        log.info("输入的用户名和密码是"+username + password);
+        log.debug("输入的用户名和密码是"+username + password);
         if ("admin".equals(username) && "123".equals(password)){
             return true;
         }

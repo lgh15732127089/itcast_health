@@ -26,7 +26,7 @@ public class MyException {
     @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(CustomException.class)
     public Result handlerException(RuntimeException e){
-        log.info("出现了自定义异常"+ e);
+        log.debug("出现了自定义异常"+ e);
 
         return new Result(false,"这是一个自定义异常"+e.getMessage());
     }
