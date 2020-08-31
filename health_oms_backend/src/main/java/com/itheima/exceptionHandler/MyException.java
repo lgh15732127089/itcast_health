@@ -48,6 +48,6 @@ public class MyException {
     )
     public Result handlerAllException(Exception e){
         log.debug("所有的异常都可以抛出");
-        return new Result(false,e.getMessage());
+        return new Result(false,"出现错误了");
     }
 }

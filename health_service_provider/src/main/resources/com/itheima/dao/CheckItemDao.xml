@@ -1,0 +1,16 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itheima.dao.CheckItemDao">
+
+    <select id="findByCondition" parameterType="string" resultType="com.itheima.pojo.CheckItem">
+        select * from t_checkitem
+        <where>
+            <if test="value != null and value.length > 0">
+                code like "%"#{value}"%" or  name like "%"#{value}"%"
+            </if>
+        </where>
+    </select>
+
+</mapper>
