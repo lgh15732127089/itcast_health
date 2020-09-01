@@ -42,4 +42,31 @@ public class CheckGroupController {
         return new Result(true,MessageConstant.QUERY_CHECKITEM_SUCCESS,pageResult);
     }
 
+    @RequestMapping("/delById")
+    public Result delById(@RequestParam("id") Integer id){
+        log.debug("要删除的检查组id为 "+id);
+        checkGroupService.delById(id);
+        return new Result(true,MessageConstant.DELETE_CHECKITEM_SUCCESS);
+    }
+
+    @RequestMapping("/findAllById")
+    public Result findAllById(@RequestParam("id") Integer id){
+        log.debug("要查询的检查组id为"+id);
+        CheckGroup checkGroup = checkGroupService.findAllById(id);
+        return new Result(true,MessageConstant.QUERY_CHECKGROUP_SUCCESS,checkGroup);
+    }
+
+    @RequestMapping("/edit")
+    public Result edit(@RequestParam("checkitems") List checkitems, @RequestBody CheckGroup checkGroup) {
+        log.debug("输入的检查组为 " + checkitems + checkGroup);
+        checkGroupService.edit(checkitems,checkGroup);
+        return new Result(true, MessageConstant.ADD_CHECKGROUP_SUCCESS);
+    }
+
+    @RequestMapping("/findCheckItemIdsById")
+    public Result findCheckItemIdsById(@RequestParam("id") Integer id){
+        log.debug("输入的检查组id为"+id);
+        List<Integer> ids = checkGroupService.findCheckItemIdsById(id);
+        return new Result(true,MessageConstant.QUERY_CHECKGROUP_SUCCESS,ids);
+    }
 }

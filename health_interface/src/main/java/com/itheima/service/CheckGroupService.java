@@ -12,7 +12,16 @@ import java.util.List;
  * @date : 2020/8/31 20:02
  */
 public interface CheckGroupService {
+
     void add(List checkitemIds, CheckGroup checkGroup);
 
     PageResult findPage(QueryPageBean queryPageBean);
+
+    void delById(Integer id);
+
+    CheckGroup findAllById(Integer id);
+
+    List<Integer> findCheckItemIdsById(Integer id);
+
+    void edit(List checkitems, CheckGroup checkGroup);
 }
