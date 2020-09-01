@@ -40,4 +40,8 @@ public interface CheckGroupDao {
 
     @Delete("delete from t_checkgroup_checkitem where checkgroup_id = #{id}")
     void delRelation(@Param("id") Integer id);
+
+    @Select("select * from t_checkgroup")
+    List<CheckGroup> findAllCheckGroup();
+
 }

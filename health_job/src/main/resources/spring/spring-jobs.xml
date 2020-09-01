@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <context:component-scan base-package="com.itheima"></context:component-scan>
+    <bean id="job" class="com.itheima.job.ClearImgJob"></bean>
+
+    <!--创建任务详情-->
+    <bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="job"></property>
+        <property name="targetMethod" value="clear"></property>
+    </bean>
+
+    <!--创建触发器-->
+    <bean id="jobTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="jobDetail"></property>
+        <property name="cronExpression" value="0/10 * * * * ?"></property>
+    </bean>
+    <!--创建调度中心-->
+    <bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <array>
+                <ref bean="jobTrigger"></ref>
+            </array>
+        </property>
+    </bean>
+</beans>
