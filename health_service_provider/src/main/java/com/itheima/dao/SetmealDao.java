@@ -5,6 +5,7 @@ import com.itheima.pojo.Setmeal;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * @author : 光辉的mac
@@ -17,8 +18,16 @@ public interface SetmealDao {
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
     void addSetmeal(Setmeal setmeal);
 
-    @Insert("INSERT INTO `itcast_health`.`t_setmeal_checkgroup` (`setmeal_id`, `checkgroup_id`) VALUES (#{setmealid}, #{checkgroupid})")
+    @Insert("INSERT INTO `t_setmeal_checkgroup` (`setmeal_id`, `checkgroup_id`) VALUES (#{setmealid}, #{checkgroupid})")
     void addRelation(@Param("setmealid") Integer setmealid,@Param("checkgroupid") Integer checkgroupid);
 
-    Page<Setmeal> findByCondition(String queryString);
+    @Select("<script> "
+            + " select * from t_setmeal "
+            + "<where>"
+            + " <if test = 'value != null'> "  //if标签开始
+            + "  code like concat('%',#{value},'%') or helpCode like concat('%',#{value},'%') or name like concat('%',#{value},'%') "
+            + " </if> "  //if标签结束
+            + "</where>"
+            + "</script>")
+    Page<Setmeal> findByCondition(@Param("value") String queryString);
 }

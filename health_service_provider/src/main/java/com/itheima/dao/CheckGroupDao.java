@@ -21,7 +21,15 @@ public interface CheckGroupDao {
     @Insert("INSERT INTO `t_checkgroup_checkitem` (`checkgroup_id`, `checkitem_id`) VALUES (#{checkgroupid}, #{checkitemid})")
     void addRelation(@Param("checkgroupid") Integer checkgroupid,@Param("checkitemid") Integer checkitemid);
 
-    Page<CheckGroup> findByCondition(String queryString);
+    @Select("<script> "
+            + " select * from t_checkgroup "
+            + "<where>"
+            + " <if test = 'value != null'> "  //if标签开始
+            + "  code like concat('%',#{value},'%') or name like concat('%',#{value},'%') "
+            + " </if> "  //if标签结束
+            + "</where>"
+            + "</script>")
+    Page<CheckGroup> findByCondition(@Param("value") String queryString);
 
     @Select("select count(0) from t_checkgroup_checkitem where checkgroup_id = #{id}")
     long findCheckItemByCheckGroupId(@Param("id") Integer id);

@@ -17,7 +17,14 @@ public interface CheckItemDao {
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
     void add(CheckItem checkitem);
 
-
+    @Select("<script> "
+            + " select * from t_checkitem "
+            + "<where>"
+            + " <if test = 'value != null'> "  //if标签开始
+            + "  code like concat('%',#{value},'%') or name like concat('%',#{value},'%') "
+            + " </if> "  //if标签结束
+            + "</where>"
+            + "</script>")
     Page<CheckItem> findByCondition(@Param("value") String queryString);
 
     @Delete("delete from t_checkgroup_checkitem where checkitem_id = #{id}")
