@@ -52,4 +52,17 @@ public interface CheckGroupDao {
     @Select("select * from t_checkgroup")
     List<CheckGroup> findAllCheckGroup();
 
+    @Select("select * from t_checkgroup where id in (select checkgroup_id from t_setmeal_checkgroup where setmeal_id=#{id})")
+    @Results({
+            @Result(id = true,column = "id",property = "id"),
+            @Result(column = "code",property = "code"),
+            @Result(column = "name",property = "name"),
+            @Result(column = "helpCode",property = "helpCode"),
+            @Result(column = "sex",property = "sex"),
+            @Result(column = "remark",property = "remark"),
+            @Result(column = "attention",property = "attention"),
+            @Result(column = "id",property = "checkItems",many = @Many(select = "com.itheima.dao.CheckItemDao.findCheckItemByCheckGroupId")),
+    })
+    List<CheckGroup> findCheckGroupBySetmealId(Integer id);
+
 }

@@ -41,4 +41,7 @@ public interface CheckItemDao {
 
     @Select("select * from t_checkitem")
     List<CheckItem> selectAllCheckItem();
+
+    @Select("select * from t_checkitem where id in (select checkitem_id from t_checkgroup_checkitem where checkgroup_id = #{id})")
+    List<CheckItem> findCheckItemByCheckGroupId();
 }

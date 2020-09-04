@@ -27,4 +27,10 @@ public class SetmealController {
         List<Setmeal> setmealList = setmealService.findAllSetmeal();
         return new Result(true, MessageConstant.QUERY_SETMEALLIST_SUCCESS,setmealList);
     }
+
+    @RequestMapping("/findById")
+    public Result findById(Integer id){
+        Setmeal setmeal = setmealService.findById(id);
+        return new Result(true,MessageConstant.QUERY_SETMEAL_SUCCESS,setmeal);
+    }
 }

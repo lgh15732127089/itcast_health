@@ -2,10 +2,7 @@ package com.itheima.dao;
 
 import com.github.pagehelper.Page;
 import com.itheima.pojo.Setmeal;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -35,4 +32,20 @@ public interface SetmealDao {
 
     @Select("select * from t_setmeal")
     List<Setmeal> findAllSetmeal();
+
+    @Select("select * from t_setmeal where id = #{id}")
+    @Results({
+                    @Result(id = true,column = "id",property = "id"),
+                    @Result(column = "name",property = "name"),
+                    @Result(column = "code",property = "code"),
+                    @Result(column = "helpCode",property = "helpCode"),
+                    @Result(column = "sex",property = "sex"),
+                    @Result(column = "age",property = "age"),
+                    @Result(column = "price",property = "price"),
+                    @Result(column = "remark",property = "remark"),
+                    @Result(column = "attention",property = "attention"),
+                    @Result(column = "img",property = "img"),
+                    @Result(column = "id",property = "checkGroups",many = @Many(select = "com.itheima.dao.CheckGroupDao.findCheckGroupBySetmealId")),
+    })
+    Setmeal findById(Integer id);
 }
