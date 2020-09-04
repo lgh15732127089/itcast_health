@@ -10,6 +10,7 @@
         <module name="health_common" />
         <module name="health_interface" />
         <module name="health_job" />
+        <module name="health_mobile_backend" />
         <module name="health_oms_backend" />
         <module name="health_oms_web" />
         <module name="health_service_provider" />
