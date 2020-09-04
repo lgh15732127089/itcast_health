@@ -56,4 +56,9 @@ public class SetmealServiceImpl implements SetmealService {
         Page<Setmeal> setmeals = setmealDao.findByCondition(queryPageBean.getQueryString());
         return new PageResult(setmeals.getTotal(), setmeals);
     }
+
+    @Override
+    public List<Setmeal> findAllSetmeal() {
+        return setmealDao.findAllSetmeal();
+    }
 }

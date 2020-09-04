@@ -19,4 +19,7 @@ public interface SetmealService {
     void add(List checkgroupIds, Setmeal setmeal);
 
     PageResult findPage(QueryPageBean queryPageBean);
+
+    List<Setmeal> findAllSetmeal();
+
 }
