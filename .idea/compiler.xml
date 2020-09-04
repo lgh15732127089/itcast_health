@@ -15,6 +15,7 @@
         <module name="health_oms_backend" />
         <module name="health_oms_web" />
         <module name="health_service_provider" />
+        <module name="health_sms_service_provider" />
       </profile>
     </annotationProcessing>
   </component>

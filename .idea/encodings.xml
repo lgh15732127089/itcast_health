@@ -10,5 +10,6 @@
     <file url="file://$PROJECT_DIR$/health_oms_backend" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/health_oms_web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/health_service_provider" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/health_sms_service_provider" charset="UTF-8" />
   </component>
 </project>
