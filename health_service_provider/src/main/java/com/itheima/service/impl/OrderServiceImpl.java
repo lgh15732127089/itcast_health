@@ -12,6 +12,7 @@ import com.itheima.pojo.OrderSetting;
 import com.itheima.service.OrderService;
 import com.itheima.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.Map;
@@ -22,6 +23,7 @@ import java.util.Map;
  * @date : 2020/9/5 15:57
  */
 @Service
+@Transactional
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
@@ -105,4 +107,5 @@ public class OrderServiceImpl implements OrderService {
         map.put("orderDate",orderDate);
         return map;
     }
+
 }
