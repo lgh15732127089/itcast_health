@@ -94,7 +94,7 @@ public class OrderServiceImpl implements OrderService {
         //修改预约设置
         orderSettingDao.editOrderSettingByReservations(orderDate, orderSetting.getReservations() + 1);
 
-        return new Result(true, MessageConstant.ORDER_SUCCESS, order.getId());
+        return new Result(true, MessageConstant.ORDER_SUCCESS, order);
     }
 
     @Override
