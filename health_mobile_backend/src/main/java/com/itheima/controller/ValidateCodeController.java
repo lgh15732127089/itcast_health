@@ -1,7 +1,10 @@
 package com.itheima.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.itheima.common.MessageConstant;
+import com.itheima.common.RedisConst;
 import com.itheima.entity.Result;
+import com.itheima.service.ValidateCodeService;
 import com.itheima.utils.RedisMessageConstant;
 import com.itheima.utils.SMSUtils;
 import com.itheima.utils.ValidateCodeUtils;
@@ -22,6 +25,9 @@ public class ValidateCodeController {
 
     @Autowired
     private JedisPool jedisPool;
+
+    @Reference
+    private ValidateCodeService validateCodeService;
 
     @RequestMapping("/send4Login")
     public Result send4Login(String telephone){
@@ -46,5 +52,27 @@ public class ValidateCodeController {
             }
         }
         return new Result(true, MessageConstant.SEND_VALIDATECODE_FAIL);
+    }
+
+    @RequestMapping("/send4Order")
+    public Result send4Order(String telephone){
+        //如果手机号为空
+        if (telephone == null){
+            return new Result(false,MessageConstant.SEND_VALIDATECODE_FAIL);
+        }
+        //生成验证码
+        String code = String.valueOf(ValidateCodeUtils.generateValidateCode(4));
+        if (code== null && code.length()==0){
+            return new Result(false,"无法生成验证码,请联系管理员");
+        }
+        try {
+            //将验证码保存到redis数据库并发送到用户
+            validateCodeService.sendValidateCodeShortMessage(telephone, RedisConst.SENDTYPE_ORDER,code);
+
+            return new Result(true,MessageConstant.SEND_VALIDATECODE_SUCCESS);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false,MessageConstant.SEND_VALIDATECODE_FAIL);
+        }
     }
 }

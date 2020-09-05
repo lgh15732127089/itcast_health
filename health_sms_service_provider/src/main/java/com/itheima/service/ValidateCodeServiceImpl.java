@@ -26,7 +26,6 @@ public class ValidateCodeServiceImpl implements ValidateCodeService{
     private String signName = "在九月";
     private String validateCodeTemplateCode = "SMS_176450181";
 
-
     /**
      * 发送验证码短信
      * @param telephone  手机号码

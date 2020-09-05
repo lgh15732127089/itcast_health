@@ -2,6 +2,7 @@ package com.itheima.dao;
 
 import com.itheima.pojo.OrderSetting;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -25,4 +26,8 @@ public interface OrderSettingDao {
 
     @Select("select * from t_ordersetting where orderDate between #{param1} and #{param2}")
     List<OrderSetting> findOrderSettingByMonth(String thisMonthFirstDay, String thisMonthLastDay);
+
+    @Update("update t_ordersetting set reservations=#{reservations} where orderDate=#{orderDate}")
+    void editOrderSettingByReservations(@Param("orderDate") Date orderDate,@Param("reservations") Integer reservations);
+
 }

@@ -15,7 +15,7 @@ public class DateUtils {
      * @return Date类型信息
      * @throws Exception 抛出异常
      */
-    public static Date parseString2Date(String dateString) throws Exception {
+    public static Date parseString2Date(String dateString) {
         if (dateString == null) {
             return null;
         }
@@ -30,12 +30,17 @@ public class DateUtils {
      * @return Date类型信息
      * @throws Exception 抛出异常
      */
-    public static Date parseString2Date(String dateString, String pattern) throws Exception {
+    public static Date parseString2Date(String dateString, String pattern)  {
         if (dateString == null) {
             return null;
         }
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-        Date date = sdf.parse(dateString);
+        Date date = null;
+        try {
+            date = sdf.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return date;
     }
 
@@ -46,7 +51,7 @@ public class DateUtils {
      * @return 字符串时间
      * @throws Exception 抛出异常
      */
-    public static String parseDate2String(Date date) throws Exception {
+    public static String parseDate2String(Date date)  {
         if (date == null) {
             return null;
         }
@@ -61,7 +66,7 @@ public class DateUtils {
      * @return 字符串时间
      * @throws Exception 抛出异常
      */
-    public static String parseDate2String(Date date, String pattern) throws Exception {
+    public static String parseDate2String(Date date, String pattern) {
         if (date == null) {
             return null;
         }

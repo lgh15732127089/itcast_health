@@ -48,4 +48,7 @@ public interface SetmealDao {
                     @Result(column = "id",property = "checkGroups",many = @Many(select = "com.itheima.dao.CheckGroupDao.findCheckGroupBySetmealId")),
     })
     Setmeal findById(Integer id);
+
+    @Select("select * from t_setmeal where id = #{id}")
+    Setmeal findSetmealById(Integer id);
 }
