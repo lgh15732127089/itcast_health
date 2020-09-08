@@ -5,6 +5,7 @@ import com.itheima.entity.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageConversionException;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -31,11 +32,20 @@ public class MyException {
         return new Result(false,"这是一个自定义异常"+e.getMessage());
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @ExceptionHandler({
+            AccessDeniedException.class//http请求权限不足
+    })
+    public Result AccessDeniedException(AccessDeniedException e) {
+        log.debug("出现了权限不足异常");
+        return new Result(false,"权限不足");
+    }
+
     @ExceptionHandler({ServletException.class,
-                    HttpMessageConversionException.class,//http body转换异常，@RequestBody的参数
-                    MethodArgumentNotValidException.class ,  //http请求缺少查询参数
-                    MethodArgumentTypeMismatchException.class//http请求参数类型不匹配
-            })
+            HttpMessageConversionException.class,//http body转换异常，@RequestBody的参数
+            MethodArgumentNotValidException.class ,  //http请求缺少查询参数
+            MethodArgumentTypeMismatchException.class//http请求参数类型不匹配
+    })
     public Result handlerOtherException(Exception e) throws Exception {
         log.debug("出现了其他异常");
         throw e;

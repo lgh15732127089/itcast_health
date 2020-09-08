@@ -13,7 +13,7 @@ public class Role implements Serializable {
     private String name; // 角色名称
     private String keyword; // 角色关键字，用于权限控制
     private String description; // 描述
-    private Set<User> users = new HashSet<User>(0);
+    private Set<SysUser> sysUsers = new HashSet<SysUser>(0);
     private Set<Permission> permissions = new HashSet<Permission>(0);
     private LinkedHashSet<Menu> menus = new LinkedHashSet<Menu>(0);
 
@@ -49,12 +49,12 @@ public class Role implements Serializable {
         this.description = description;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public Set<SysUser> getSysUsers() {
+        return sysUsers;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setSysUsers(Set<SysUser> sysUsers) {
+        this.sysUsers = sysUsers;
     }
 
     public Set<Permission> getPermissions() {

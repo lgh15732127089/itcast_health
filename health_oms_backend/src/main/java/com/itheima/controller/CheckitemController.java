@@ -9,6 +9,7 @@ import com.itheima.entity.Result;
 import com.itheima.pojo.CheckItem;
 import com.itheima.service.CheckItemService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class CheckitemController {
     @Reference
     private CheckItemService checkItemService;
 
+    @PreAuthorize("hasAuthority('CHECKITEM_ADD')")
     @RequestMapping("/add")
     public Result add(@RequestBody CheckItem checkitem){
         log.debug("输入的检查组为 "+checkitem);
@@ -33,6 +35,7 @@ public class CheckitemController {
     }
 
     @RequestMapping("/findPage")
+    @PreAuthorize("hasAuthority('CHECKITEM_QUERY')")
     public Result findPage(@RequestBody QueryPageBean queryPageBean){
         log.debug("查询检查项的条件为 "+queryPageBean);
         PageResult pageResult = checkItemService.findPage(queryPageBean);
@@ -40,6 +43,7 @@ public class CheckitemController {
     }
 
     @RequestMapping("/delById")
+    @PreAuthorize("hasAuthority('CHECKITEM_DELETE')")
     public Result delById(@RequestParam("id") Integer id){
         log.debug("要删除的检查项id为 "+id);
         checkItemService.delById(id);
@@ -47,6 +51,7 @@ public class CheckitemController {
     }
 
     @RequestMapping("/findById")
+    @PreAuthorize("hasAuthority('CHECKITEM_QUERY')")
     public Result findById(@RequestParam("id") Integer id){
         log.debug("要查找的检查项id为 "+id);
         CheckItem checkItem = checkItemService.findById(id);
@@ -54,6 +59,7 @@ public class CheckitemController {
     }
 
     @RequestMapping("/edit")
+    @PreAuthorize("hasAuthority('CHECKITEM_EDIT')")
     public Result edit(@RequestBody CheckItem checkitem){
         log.debug("要修改的检查组为 "+checkitem);
         checkItemService.edit(checkitem);
@@ -62,6 +68,7 @@ public class CheckitemController {
 
 
     @RequestMapping("/selectAllCheckItem")
+    @PreAuthorize("hasAuthority('CHECKITEM_QUERY')")
     public Result selectAllCheckItem(){
         List<CheckItem> checkItems = checkItemService.selectAllCheckItem();
         log.debug("所有的检查组为 "+checkItems);

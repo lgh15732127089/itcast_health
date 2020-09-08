@@ -282,7 +282,7 @@ INSERT INTO `t_menu` VALUES ('11', '健康评估', null, '4', '3', 'fa-stethosco
 INSERT INTO `t_menu` VALUES ('12', '中医体质辨识', null, '/4-1', '1', null, null, '11', '2');
 INSERT INTO `t_menu` VALUES ('13', '统计分析', null, '5', '4', 'fa-heartbeat', null, null, '1');
 INSERT INTO `t_menu` VALUES ('14', '会员数量', 'report_member.html', '/5-1', '1', null, null, '13', '2');
-INSERT INTO `t_menu` VALUES ('15', '系统设置', null, '6', '5', 'fa-users', null, null, '1');
+INSERT INTO `t_menu` VALUES ('15', '系统设置', null, '6', '5', 'fa-sysUsers', null, null, '1');
 INSERT INTO `t_menu` VALUES ('16', '菜单管理', 'menu.html', '/6-1', '1', null, null, '15', '2');
 INSERT INTO `t_menu` VALUES ('17', '权限管理', 'permission.html', '/6-2', '2', null, null, '15', '2');
 INSERT INTO `t_menu` VALUES ('18', '角色管理', 'role.html', '/6-3', '3', null, null, '15', '2');
