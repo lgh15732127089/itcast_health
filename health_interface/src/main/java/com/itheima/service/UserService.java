@@ -10,4 +10,6 @@ import com.itheima.pojo.SysUser;
 public interface UserService {
 
     SysUser findUserByUsername(String username);
+
+    void editPasswordByUsername(String username, String password);
 }

@@ -24,4 +24,9 @@ public class UserServiceImpl implements UserService {
     public SysUser findUserByUsername(String username) {
         return userDao.findUserByUsername(username);
     }
+
+    @Override
+    public void editPasswordByUsername(String username, String password) {
+        userDao.editPasswordByUsername(username,password);
+    }
 }

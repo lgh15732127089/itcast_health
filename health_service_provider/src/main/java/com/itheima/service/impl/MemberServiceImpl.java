@@ -6,6 +6,9 @@ import com.itheima.pojo.Member;
 import com.itheima.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Calendar;
+import java.util.Map;
+
 /**
  * @author : 光辉的mac
  * @ClassName MemberServiceImpl
@@ -25,5 +28,13 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void addMember(Member member) {
         memberDao.addMember(member);
+    }
+
+    @Override
+    public Map<String, Object> getMemberReport() {
+        Calendar calendar = Calendar.getInstance();
+
+
+        return null;
     }
 }

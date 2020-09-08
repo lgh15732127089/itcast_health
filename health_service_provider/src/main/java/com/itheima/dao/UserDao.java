@@ -19,4 +19,7 @@ public interface UserDao {
     })
     @Select("select * from t_user where username = #{username}")
     SysUser findUserByUsername(@Param("username") String username);
+
+    @Update("update t_user set password=#{password} where username = #{username}")
+    void editPasswordByUsername(@Param("username") String username,@Param("password") String password);
 }
