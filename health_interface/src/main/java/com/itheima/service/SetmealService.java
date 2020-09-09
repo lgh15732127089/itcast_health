@@ -6,6 +6,7 @@ import com.itheima.pojo.CheckGroup;
 import com.itheima.pojo.Setmeal;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author : 光辉的mac
@@ -26,4 +27,5 @@ public interface SetmealService {
 
     Setmeal findSetmealById(Integer id);
 
+    List<Map<String, String>> findSetmealAndOrder();
 }

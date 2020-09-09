@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.JedisPool;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author : 光辉的mac
@@ -70,5 +71,10 @@ public class SetmealServiceImpl implements SetmealService {
     @Override
     public Setmeal findSetmealById(Integer id) {
         return setmealDao.findSetmealById(id);
+    }
+
+    @Override
+    public  List<Map<String, String>> findSetmealAndOrder() {
+        return setmealDao.findSetmealAndOrder();
     }
 }

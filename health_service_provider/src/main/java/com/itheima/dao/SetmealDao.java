@@ -5,6 +5,7 @@ import com.itheima.pojo.Setmeal;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author : 光辉的mac
@@ -51,4 +52,7 @@ public interface SetmealDao {
 
     @Select("select * from t_setmeal where id = #{id}")
     Setmeal findSetmealById(Integer id);
+
+    @Select("select s.name name,count(o.setmeal_id) value from t_setmeal s LEFT JOIN t_order o on s.id = o.setmeal_id GROUP BY s.id")
+    List<Map<String, String>> findSetmealAndOrder();
 }
