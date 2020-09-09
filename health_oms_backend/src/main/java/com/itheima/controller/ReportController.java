@@ -199,7 +199,7 @@ public class ReportController {
             response.setContentType("application/vnd.ms-excel");
             //attachment 以附件下载
             //下载弹出框架中的默认的文件名
-            response.setHeader("content-Disposition", "attachment;filename=" + reportData.getReportDate() + "_report.xlsx");
+            response.setHeader("content-Disposition", "attachment;filename=" + reportData.getReportDate()+System.currentTimeMillis()+ "_report.xlsx");
             //输出流下载
             workbook.write(out);
             out.flush();
@@ -211,4 +211,5 @@ public class ReportController {
             e.printStackTrace();
         }
     }
+
 }
