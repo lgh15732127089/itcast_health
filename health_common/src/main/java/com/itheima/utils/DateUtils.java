@@ -300,7 +300,7 @@ public class DateUtils {
     }
 
     //获取输入月的最后一天
-    public static Date getLatDay4Month(String month){
+    public static Date getLastDay4Month(String month){
         try {
             Date monthDate = new SimpleDateFormat("yyyy-MM").parse(month);
             Calendar calendar = Calendar.getInstance();
@@ -317,7 +317,7 @@ public class DateUtils {
 
     public static void main(String[] args) {
         try {
-            Date date = getLatDay4Month("2020-02");
+            Date date = getLastDay4Month("2020-02");
             System.out.println(date);
         } catch (Exception e) {
             e.printStackTrace();

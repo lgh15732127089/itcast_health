@@ -40,7 +40,7 @@
         // 使用刚指定的配置项和数据显示图表。
         //myChart.setOption(option);
 
-        axios.get("/report/getSetmealReport.do").then((res)=>{
+        axios.get("http://localhost:82/report/getSetmealReport.do").then((res)=>{
             myChart1.setOption({
                                     title : {
                                         text: '套餐预约占比',

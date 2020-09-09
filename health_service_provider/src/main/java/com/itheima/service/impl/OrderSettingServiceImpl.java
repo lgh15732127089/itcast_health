@@ -37,7 +37,7 @@ public class OrderSettingServiceImpl implements OrderSettingService {
         //当前月第一天
         String thisMonthFirstDay = month + "-01";
         //当前月最后一天
-        String thisMonthLastDay =new SimpleDateFormat("yyyy-MM-dd").format(DateUtils.getLatDay4Month(month));
+        String thisMonthLastDay =new SimpleDateFormat("yyyy-MM-dd").format(DateUtils.getLastDay4Month(month));
         return orderSettingDao.findOrderSettingByMonth(thisMonthFirstDay,thisMonthLastDay);
     }
 
