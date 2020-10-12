@@ -21,10 +21,10 @@ import redis.clients.jedis.JedisPool;
 @Service
 @Slf4j
 public class ValidateCodeServiceImpl implements ValidateCodeService{
-    private String accessKey = "LTAI4GJuPXsdYhMQgY9vAK3o";
-    private String secretKey = "tHQNW0YqT5bDUPpPLSNBm0YIWUxgMv";
-    private String signName = "在九月";
-    private String validateCodeTemplateCode = "SMS_176450181";
+    private String accessKey = "";
+    private String secretKey = "";
+    private String signName = "";
+    private String validateCodeTemplateCode = "";
 
     /**
      * 发送验证码短信
